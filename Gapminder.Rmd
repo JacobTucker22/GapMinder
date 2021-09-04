@@ -1,0 +1,48 @@
+---
+title: "Gapminder Plot"
+author: "Jacob Tucker"
+#date: "9/3/2021"
+output: html_document
+runtime: shiny
+---
+
+#Plot demonstrating gapminder, bascis R plot, and R markdown integration of Rshiny
+
+
+```{r gapminder, echo=FALSE, eval=TRUE, message = FALSE}
+require(gapminder)
+
+#Create vector of unique countries for dropdown selection
+countries <-  unique(gapminder$country)
+
+#UI allow user to select country to plot
+inputPanel(selectInput(
+  "countries",
+  label = "Country",
+  choices = countries,
+  selected = 0
+))
+
+#Plots the selected country's population in millions per year
+renderPlot({
+  gapIndex <- gapminder$country == input$countries
+  gapCountry <- gapminder[gapIndex,]
+  par(mai=c(1.5,1.5,.5,.5), mgp=c(3,1,0))
+  plot(
+    gapCountry$year,
+    gapCountry$pop  / 1000000,
+    xlab = "Year",
+    ylab = "Population (In millions)",
+    main = input$countries
+  )
+  
+})
+    
+
+
+```
+
+
+
+
+
