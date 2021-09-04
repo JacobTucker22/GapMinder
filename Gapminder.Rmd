@@ -6,10 +6,11 @@ output: html_document
 runtime: shiny
 ---
 
-#Plot demonstrating gapminder, bascis R plot, and R markdown integration of Rshiny
-
 
 ```{r gapminder, echo=FALSE, eval=TRUE, message = FALSE}
+
+#Plot demonstrating gapminder, basic R plot, and R markdown integration of Rshiny
+
 require(gapminder)
 
 #Create vector of unique countries for dropdown selection
